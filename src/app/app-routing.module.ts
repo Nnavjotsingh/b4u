@@ -53,10 +53,6 @@ const routes: Routes = [
   {
     path: 'torder-delvered',
     loadChildren: () => import('./torder-delvered/torder-delvered.module').then( m => m.TorderDelveredPageModule)
-  },
-  {
-    path: 'splach',
-    loadChildren: () => import('./splach/splach.module').then( m => m.SplachPageModule)
   }
 ];
 @NgModule({
