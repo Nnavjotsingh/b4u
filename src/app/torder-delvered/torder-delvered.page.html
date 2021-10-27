@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" (click)="close()" class="back_my_arrow"></ion-icon>
+    <ion-title>torder_delvered</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-card >
+        <ion-card-header>
+          <ion-card-title>{{todayor.cust_name}} ({{todayor.cust_phone}})</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            <ion-col>
+              Total<br>
+              <h5 class="card_bold">₹ {{todayor.totalamt}}</h5>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+      </ion-col>
+      </ion-row>
+      <div>
+      <ion-card>
+        <ion-row>
+          <ion-col>
+            Balance<br>
+            <h5 class="card_bold">₹ {{todayor.balamt}}</h5>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <!-- <ion-col>
+            <ion-label>Total Amount</ion-label>
+            <ion-input value="Disabled" disabled type="tel" [(ngModel)]="totalAmount" ></ion-input>
+          </ion-col> -->
+          <ion-col>
+            <ion-label>Received</ion-label>
+            <ion-input value="Disabled" disabled type="hidden" [(ngModel)]="totalAmount" ></ion-input>
+            <ion-input type="tel" [(ngModel)]="revamt" (ionChange)="balance()"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-label>Balance</ion-label>
+            <ion-input type="tel" [(ngModel)]="balamt"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="bcen" >
+          <ion-button color="primary" size="12px" (click)="orderdone()">OK</ion-button>
+        </ion-row>
+      </ion-card>
+      <ion-row *ngIf="featch">
+        <ion-col class="divv ion-text-center col-center ">
+          <ion-spinner name="crescent" color="primary"></ion-spinner>
+          Loading Today Order...
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+</ion-content>

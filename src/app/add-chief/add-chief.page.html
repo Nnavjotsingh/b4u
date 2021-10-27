@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" routerLink="/chief" class="back_my_arrow" (click)="onClick()"></ion-icon>
+    <ion-title class="ion-text-center">{{isUpdate ? 'Update' : 'Add'}} Chief</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="get_kundli_form">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Chief Name</ion-label>
+          <ion-input [(ngModel)]="Name" placeholder="Name"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Phone Number</ion-label>
+          <ion-input type="tel"  [(ngModel)]="Mobile" placeholder="Phone" maxlength="10" ></ion-input>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col>
+          <ion-label>Email</ion-label>
+          <ion-input [(ngModel)]="Email" placeholder="Phone"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Password</ion-label>
+          <ion-input [(ngModel)]="Password" placeholder="Phone"></ion-input>
+        </ion-col>
+      </ion-row> -->
+      <ion-row>
+        <ion-col>
+          <button expand="full" class="submit_btn btn-block" (click)="onSubmit()">{{isUpdate ? 'Update' : 'Save'}}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

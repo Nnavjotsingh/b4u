@@ -1,0 +1,96 @@
+.home_top_head {
+  background: #6236ff !important;
+  color: #fff !important;
+}
+.home_top_head h5 {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: 600;
+  text-align: center;
+}
+.item_alresdy {
+  color: #000;
+  font-weight: 600;
+}
+.item_right {
+  float: right !important;
+}
+
+.get_kundli_form {
+  h3 {
+    margin-top: 8px !important;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  ion-label {
+    font-size: 11px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #27173e;
+    display: block;
+    line-height: 1.2em;
+  }
+
+  ion-input {
+    background: #fff;
+    box-shadow: none;
+    height: 42px;
+    border-radius: 10px;
+    padding: 0 40px 0 20px;
+    margin-bottom: 15px;
+  }
+  ion-select,
+  ion-datetime,
+  ion-input {
+    background: #fff;
+    box-shadow: none;
+    height: 42px;
+    border-radius: 10px;
+    padding: 0 40px 0 20px;
+    margin-bottom: 15px;
+  }
+  ion-textarea {
+    background: #fff;
+    box-shadow: none;
+    border-radius: 10px;
+    padding: 0 40px 0 20px;
+    margin-bottom: 15px;
+  }
+  .submit_btn {
+    height: 52px;
+    padding: 3px 24px;
+    font-size: 15px;
+    background: #4e1dff !important;
+    border-color: #4e1dff !important;
+    color: #ffffff !important;
+    line-height: 1.2em;
+    font-weight: 500;
+    box-shadow: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s all;
+    text-decoration: none !important;
+    border-radius: 10px;
+    width: 100%;
+  }
+}
+
+.item_card {
+  margin-bottom: 10px !important;
+}
+.item_card .ion-card-content {
+  position: absolute;
+}
+
+.item_card .cclose {
+  position: relative;
+  float: right;
+  margin-right: -10px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  
+}
+ion-select{
+  border: 1px solid;
+}

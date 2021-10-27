@@ -1,0 +1,166 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-back-button [routerLink]="['Tab3Page']"></ion-back-button>
+    </ion-buttons> -->
+    <ion-icon name="arrow-back-outline" slot="start" (click)="close()" class="back_my_arrow"></ion-icon>
+    <ion-title>Orders-Details</ion-title>
+    <!-- [routerLink]="['TabsPage']" -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <strong>
+          <p>{{order.cust_name}}({{order.cust_phone}})</p>
+        </strong>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <strong>
+          Deliver Date
+        </strong>
+      </ion-col>
+      <ion-col>
+        <ion-datetime displayFormat="DD MMM YYYY" value="{{order.ordertime}}">{{order.ordertime}}</ion-datetime>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <strong>Deliver Time</strong>
+      </ion-col>
+      <ion-col>
+        <ion-datetime displayFormat="h:mm a" value="{{order.ordertime}}">{{order.ordertime}}</ion-datetime>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-row>
+            <ion-col class="pay">Payments</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <strong>Total Amount</strong>
+              <p>₹ {{order.totalamt}}</p>
+            </ion-col>
+            <ion-col>
+              <strong>Received</strong>
+              <p>{{order.revamt}}</p>
+            </ion-col>
+            <ion-col>
+              <strong>Balance</strong>
+              <p>{{order.balamt}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-center"> 
+      <ion-col *ngIf="peproni === true; else fffh">
+        <strong >Pending by Cheif</strong>
+      </ion-col>
+      <ng-template #fffh>
+        <strong >Finished by Cheif</strong>
+      </ng-template>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      
+          <strong class="ion-text-center">
+            <h6 class="itrrr">Order Items</h6>
+          </strong>
+            </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card *ngFor="let cart_items of order.cart_items">
+          <ion-row *ngIf="cart_items.item == 'Cake'; else fffh">
+            <ion-row>
+              <ion-col>
+                <strong>
+                  <p>{{cart_items.item}}</p>
+                </strong>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Pond
+                <strong>
+                  <p>
+                    {{cart_items.pond}}</p>
+                </strong>
+              </ion-col>
+              <ion-col>
+                Flaevor
+                <strong>
+                  <p>
+                    {{cart_items.flvr}}</p>
+                </strong>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <img src={{cart_items.file}} width="100%">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Discription
+                <strong>
+                  <p>
+                    {{cart_items.descc}}</p>
+                </strong>
+              </ion-col>
+            </ion-row>
+          </ion-row>
+          <ng-template #fffh>
+            <ion-row>
+              <ion-col>
+                <strong>
+                  <p>{{cart_items.item}}</p>
+                </strong>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                QNTY
+                <strong>
+                  <p>
+                    {{cart_items.qnty}}</p>
+                </strong>
+              </ion-col>
+              <ion-col>
+                Price
+                <strong>
+                  <p>
+                    {{cart_items.price}}</p>
+                </strong>
+              </ion-col>
+              <ion-col>
+                Amount
+                <strong>
+                  <p>
+                    {{cart_items.amt}}</p>
+                </strong>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Discription
+                <strong>
+                  <p>
+                    {{order.odesc}}</p>
+                </strong>
+              </ion-col>
+            </ion-row>
+          </ng-template>
+        </ion-card>
+      
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

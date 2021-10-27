@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" (click)="close()" class="back_my_arrow"></ion-icon>
+    <ion-title>Orders-Update</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <ion-row>
+            <ion-col>
+            {{order.cust_name}}</ion-col>{{order.cust_phone}}
+          </ion-row>
+                 <ion-row>
+         <ion-col>
+           <ion-label>Deliver Date</ion-label></ion-col><ion-col>
+          <ion-datetime displayFormat="MM DD YY" value="{{order.ordertime}}">{{order.ordertime}}</ion-datetime>
+         </ion-col>
+        </ion-row>
+         <ion-row>
+         <ion-col>
+           <ion-label>Deliver Time</ion-label></ion-col><ion-col>
+          <ion-datetime displayFormat="h:mm a" value="{{order.ordertime}}">{{order.ordertime}}</ion-datetime>
+         </ion-col>
+       </ion-row>
+    <ion-card>
+      <ion-row>
+        <ion-col class="pay">Payments</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Total Amount</ion-label>
+          <ion-input type="tel" [(ngModel)]="totalAmount">{{order.totalamt}}</ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-label>Received</ion-label>
+          <ion-input type="tel" [(ngModel)]="rec" (ionChange)="balance()">{{order.revamt}}</ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-label>Balance</ion-label>
+          <ion-input type="tel" [(ngModel)]="bal">{{order.balamt}}</ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <ion-row>
+      <ion-col>
+        <h2>Pending By Chief</h2>
+      </ion-col>
+    </ion-row>
+    <ion-card>
+      <ion-row>
+        <ion-col>
+          <ion-label>Chief Id</ion-label>
+          </ion-col>
+          
+          <ion-col>
+          {{order.cheif_id}}
+        </ion-col>
+      
+        <ion-col>
+          <ion-label>Chief Status</ion-label>
+          </ion-col>
+          
+            <ion-col>
+          {{order.cheif_status}}
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <ion-row>
+      <ion-col>
+        <h2 class="itrrr">Order Items</h2>
+      </ion-col>
+    </ion-row>
+    <ion-card>
+      <ion-row>
+        <ion-col>
+          <ion-label>{{order.cart_items}}</ion-label>
+        </ion-col>
+        <ion-col>
+          {{order.status}}
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <ion-button color="success" size="small" style="float: right;" (click)="updateItem()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-row>
+    </ion-card-content>
+
+  </ion-grid>
+</ion-content>

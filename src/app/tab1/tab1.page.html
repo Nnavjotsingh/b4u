@@ -1,17 +1,166 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="boddy">
+  <ion-grid class="home_top_head">
+    <ion-row>
+      <ion-col (click)="doRefresh(event)">
+        <h5>Welcome Back to<br>Bake4U</h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    
+    <!-- <ion-content padding>
+      <a href="http://www.bake4u.online/order/">Vist my page</a>
+    </ion-content> -->
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content *ngFor="let todayr of todayr">
+            Today Orders
+            <h1 >{{todayr.ttl_order}}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-content *ngFor="let topand of topand">
+            Today Panding
+            <h1>{{topand.ttl_order}}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content *ngFor="let toready of toready">
+            Today Ready
+            <h1>{{toready.ttl_order}}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-content *ngFor="let todelv of todelv">
+            Today Delivered
+            <h1>{{todelv.ttl_order}}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="goToItem()" expand="block" shape="round" color="primary">
+          Items
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="goToCheif()" expand="block" shape="round" color="secondary">
+          Chief
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h5 class="heading">Today Order List</h5>
+      </ion-col>
+      
+      <ion-col>
+        <ion-button (click)="allOrder()" color="primary" size="small" style="float: right;">View All</ion-button>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <ion-card class="home_card" *ngFor="let  todayor of  todayor">
+          <ion-card-header>
+            <ion-card-title>{{todayor.cust_name}}(<a href="tel:+91{{todayor.cust_phone}}">{{todayor.cust_phone}}</a>)
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                Total<br>
+                <h5 class="card_bold">₹ {{todayor.totalamt}} </h5>
+              </ion-col>
+              <ion-col>
+                Received<br>
+                <h5 class="card_bold" >₹ {{ todayor.totalamt - todayor.balamt}}</h5>
+              </ion-col>
+              <ion-col>
+                Balance<br>
+                <h5 class="card_bold">₹ {{todayor.balamt}}</h5>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let cart_items of todayor.cart_items">
+              <ion-row *ngIf="cart_items.item == 'Cake'; else fffh">
+              <ion-col>
+                <h5 class="card_bold">{{cart_items.item}}</h5>
+              </ion-col>
+              <ion-col>
+                Pond<br>
+                {{cart_items.pond}}
+              </ion-col>
+              <ion-col>
+                Flaevor<br>
+                {{cart_items.flvr}}
+              </ion-col>
+            </ion-row>
+            <ng-template #fffh>
+              <ion-col>
+                <h5 class="card_bold">{{cart_items.item}}</h5>
+              </ion-col>
+              <ion-col> Qunty:<br>
+                {{cart_items.qnty}}
+              </ion-col>
+            </ng-template>
+          </ion-row>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+
+            <ion-row>
+              <ion-col>
+                <!-- <h5 class="card_bold_red" *ngFor="let cheif of cheifs" value="{{cheif.id}}" >Finished By Chief-{{cheif.Name}}</h5> -->
+                <label class="card_bold">Order Date</label>
+                <ion-datetime displayFormat="MM DD YY " value="{{todayor.ordertime}}">{{todayor.ordertime}}
+                </ion-datetime>
+              </ion-col>
+              <ion-col>
+                <label class="card_bold">Order Time</label>
+                <ion-datetime displayFormat="h:mm a" value="{{todayor.ordertime}}">{{todayor.ordertime}}
+                </ion-datetime>
+                <!-- <h5 class="card_bold"></h5> -->
+              </ion-col>
+            </ion-row>
+            <ion-row class="btns">
+              <ion-col *ngIf="todayor.status == 0; else fffh">
+              <ion-button color="danger"
+                  class="ion-color ion-color-danger button button-solid ion-activatable ion-focusable hydrated"
+                  size="small" expand="block" (click)="delorder(todayor)">
+                  Deliver</ion-button>
+                </ion-col>
+                <ng-template #fffh>
+                  <ion-col>
+                    <ion-button expand="block" size="small">Delivered</ion-button>
+                </ion-col>
+                    
+                  
+                  
+                 
+                </ng-template> 
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="featch">
+      <ion-col class="divv ion-text-center col-center ">
+        <img src="assets/image/loading.gif" alt="">
+         <!-- <ion-spinner name="crescent" color="primary"></ion-spinner> -->
+                  Loading Today Order...
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

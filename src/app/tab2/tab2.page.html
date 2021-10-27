@@ -1,17 +1,160 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <!-- <button ion-button icon-only (click)="closemodal()"routerLink="">
+      <ion-icon name="close" routerLink='home'></ion-icon>
+    </button> -->
+
+    <ion-title class="ion-text-center">Get order</ion-title>
   </ion-toolbar>
 </ion-header>
+<!-- <ion-scroll delegate-handle="calendarScroll" direction="x"> -->
+<ion-content [scrollEvents]="true">
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="do($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Refreshing.....">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    </ion-refresher-content>
+  </ion-refresher> -->
+  <!-- <ion-row *ngIf="featch"> -->
+    <!-- <ion-col class="divv ion-text-center col-center "> -->
+      <!-- <img src="assets/image/loading.gif" alt=""> -->
+       <!-- <ion-spinner name="crescent" color="primary"></ion-spinner> -->
+                <!-- Loading Today Order... -->
+    <!-- </ion-col> -->
+  <!-- </ion-row> -->
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="addcartcake()" expand="block" shape="round" color="success">
+        Add Cake
+      </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button (click)="addcartitem()" expand="block" shape="round" color="primary">
+        Add Item
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-grid class="home_top_head">
+    <ion-row>
+      <ion-col>
+        <h5>Billed Items</h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="item_card" *ngFor="let cart of carts">
+          <ion-card-content>
+            <ion-badge color="danger cclose" slot="end" (click)="removecart(cart.id)">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-badge>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+            <h5 class="item_alresdy">{{cart.item}} <span class="item_right">{{cart.amt}}</span></h5>
+            <p>Subtotal <span class="item_right">{{cart.qnty}} X {{cart.price}} = {{cart.amt}}</span></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="ittttt">
+      <ion-col class="ion-text-center">
+        Enter items...... 
+        <ion-button (click)="doRefresh(event)" size="small" shape="round">Refresh</ion-button>
+      </ion-col>
+          
+    
+    </ion-row>
+  </ion-grid>
+  <div class="get_kundli_form">
+    <!-- <form #form="ngForm" > -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Customer Name</ion-label>
+          <ion-input type="text (required)"  [(ngModel)]="name" placeholder="Name" ></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Customer Phone Number</ion-label>
+          <ion-input type="tel (required)" maxlength="10" minlength="10" [(ngModel)]="mb"  placeholder="Phone_Number" ></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Delivery Date</ion-label>
+          <ion-datetime type="tel" [(ngModel)]="ddate" display-timezone="utc" ></ion-datetime>
+        </ion-col>
+        <ion-col>
+          <ion-label>Delivery Time</ion-label>
+          <ion-datetime type="tel" [(ngModel)]="ttime" displayFormat="h:mm a" ></ion-datetime>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Add Description</ion-label>
+          <ion-textarea type="text" [(ngModel)]="dess" placeholder="Remark" rows="5" ></ion-textarea>
+        </ion-col>
+      </ion-row>
+
+
+      <!-- <ion-select placeholder="Select Gender">
+            <ion-select-option value="">Select</ion-select-option>
+            <ion-select-option value="Male">Male</ion-select-option>
+            <ion-select-option value="Female">Female</ion-select-option>
+          </ion-select> -->
+
+
+      <ion-row>
+        <ion-col>
+          <!-- <ion-input type="tel" [(ngModel)]="totalitem"></ion-input> -->
+          <!-- <ion-card class="item_card" *ngFor="let selectedItemss of selectedItems">
+         <ion-input type="text" [(ngModel)]="selid">{{selectedItemss.id}}</ion-input> -->
+
+         <!-- <ion-input [(ngModel)]="selid" *ngFor="let getSelectedItems of getSelectedItems" value="{{getSelectedItems.id}}">{{selectedItemss.id}}</ion-input> -->
+        <!-- </ion-card> -->
+        </ion-col>
+      </ion-row>
+
+
+
+
+      <ion-row>
+        <ion-col>
+          <ion-label>select Chief</ion-label>
+          <ion-select class="ion-select-bo" [compareWith]="compareWith" multiple="false" [(ngModel)]="cheifid">
+            <ion-select-option *ngFor="let cheif of cheifs" value="{{cheif.id}}">{{cheif.Name}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h5 class="heading">Today Order List</h5>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Total Amount</ion-label>
+          <ion-input type="tel" [(ngModel)]="totalAmount" ></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-label>Received</ion-label>
+          <ion-input type="tel" [(ngModel)]="rec" (ionChange)="balance()" ></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-label>Balance</ion-label>
+          <ion-input type="tel" [(ngModel)]="bal"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button expand="full" class="submit_btn btn-block" (click)="ordSubmit()" >Submit</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  <!-- </form> -->
+  </div>
 </ion-content>

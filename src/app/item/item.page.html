@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" routerLink="/" class="back_my_arrow"></ion-icon>
+    <ion-title class="ion-text-center">All Items</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" class="backgroud">
+  <ion-grid>
+   
+
+    <ion-row>
+      <ion-col>
+        <h5 class="heading">All Items</h5>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="doRefresh(event)" size="small" style="float: right;" expand="block" shape="round" color="primary">
+          refresh
+        </ion-button>
+    </ion-col>
+      <ion-col>
+        <ion-button (click)="add_Item()" size="small" style="float: right;" expand="block" shape="round" color="primary">
+          Add Item
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="item_card" *ngFor="let item of items">
+          <ion-card-header>
+            <ion-row>
+              <ion-col>
+                <ion-card-title>{{item.name}}</ion-card-title>
+              </ion-col>
+              <ion-col>
+                <ion-button color="danger" size="small" style="float: right;" (click)="removeItem(item.id)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+                <ion-button color="success" size="small" style="float: right;" (click)="updateItem(item)">
+                  <ion-icon name="create-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                Price <br>
+                <h5 class="card_bold">₹ {{item.price}}</h5>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                {{item.des}}
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="featch">
+      <ion-col class="divv ion-text-center col-center ">
+        <img src="assets/image/loading.gif" alt=""> 
+                  Loading Today Order...
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

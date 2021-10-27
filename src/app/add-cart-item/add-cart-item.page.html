@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-outline" (click)="close()" class="arrow" ></ion-icon>
+    </ion-buttons>
+<ion-title class="ion-text-center">Add Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="get_kundli_form">
+    <ion-grid>
+      <ion-row>
+          <ion-col>
+            <ion-label>Select Item</ion-label>
+            <ion-select class="ion-select-bo" [compareWith]="compareWith" multiple="false"  [(ngModel)]="selectedItem" (ionChange)="itemprice()">
+              <ion-select-option *ngFor="let item of items" [value]="item" (click)="itemprice(price)">{{item.name}}</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>Price</ion-label>
+            <ion-input type="tel" [(ngModel)]="price"  placeholder="Price"></ion-input>
+            <!-- <ion-input type="hidden" [(ngModel)]="name" ></ion-input> -->
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>Quantity</ion-label>
+            <ion-input type="tel" [(ngModel)]="quantity" (ionChange)="setItemAmt()" placeholder="Quantity"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>Amount</ion-label>
+            <ion-input type="tel" [(ngModel)]="amount" placeholder="Amount"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>Item Description</ion-label>
+            <ion-input type="tel" [(ngModel)]="descc" placeholder="Description"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button expand="full" class="submit_btn btn-block" (click)="onSubmit()" >Submit</button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

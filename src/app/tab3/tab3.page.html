@@ -1,17 +1,125 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+<ion-header>
+  <ion-toolbar (click)="doRefresh(event)">
+    <!-- <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons> -->
+    <ion-icon name="arrow-back-outline" slot="start" routerLink="/" class="back_my_arrow"></ion-icon>
+    <ion-title class="ion-text-center">Recenlty Orders</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h5 class="heading">Recent Order</h5>
+      </ion-col>
+      <ion-col>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+        <ion-button (click)="allOrder()" color="primary" size="small" style="float: right;">All Orders</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card *ngFor="let  todayor of  todayor">
+          <ion-card-header>
+            <ion-card-title>{{todayor.cust_name}} ({{todayor.cust_phone}})</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                Total<br>
+                <h5 class="card_bold">₹ {{todayor.totalamt}}</h5>
+              </ion-col>
+              <ion-col>
+                Received<br>
+                <h5 class="card_bold">₹ {{todayor.totalamt - todayor.balamt}}</h5>
+              </ion-col>
+              <ion-col>
+                Balance<br>
+                <h5 class="card_bold">₹ {{todayor.balamt}}</h5>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-text-center">
+              <ion-col *ngIf="todayor.cheif_status == '0'; else fffhcc">
+                <strong >Pending by Cheif</strong>
+              </ion-col>
+              <ng-template #fffhcc>
+                <strong class="ion-text-center">Finished by Cheif</strong>
+              </ng-template>
+            </ion-row>
+            <div *ngFor="let cart_items of todayor.cart_items">
+              <ion-row class="ion-text-center">
+                <ion-col>
+                  <strong>
+                    All Item
+                  </strong>
+                </ion-col>
+              </ion-row>
+              <div *ngIf="cart_items.item == 'Cake'; else fffh">
+                <ion-row>
+                  <ion-col>
+
+                    <h5 class="card_bold"> {{cart_items.item}} </h5>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>Pond: <br>{{cart_items.pond}}</ion-col>
+                  <ion-col>Flavour:<br> {{cart_items.flvr}}</ion-col>
+
+                </ion-row>
+              </div>
+              <ng-template #fffh>
+                <ion-row>
+                  <ion-col>
+                    <h5 class="card_bold"> {{cart_items.item}} </h5>
+                  </ion-col>
+                
+                  <ion-col>
+                    Qunty:<br>{{cart_items.qnty}}
+                  </ion-col>
+                </ion-row>
+                
+              </ng-template>
+            </div>
+            <ion-row>
+              <ion-col>
+                <ion-button color="success"
+                  class="ion-color ion-color-success md button button-solid ion-activatable ion-focusable hydrated"
+                  expand="block" size="small" (click)="viewtorder(todayor)">view
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button color="danger"
+                  class="ion-color ion-color-danger button button-solid ion-activatable ion-focusable hydrated"
+                  expand="block" size="small" (click)="removeorder(todayor.id)">
+                  Delete</ion-button>
+              </ion-col>
+              <ion-col *ngIf="todayor.status == 0; else fffh">
+                <ion-button color="danger"
+                  class="ion-color ion-color-danger button button-solid ion-activatable ion-focusable hydrated"
+                  expand="block"  size="small" (click)="delorder(todayor)">
+                  Deliver</ion-button>
+              </ion-col>
+              <ng-template #fffh>
+                <ion-col>
+                  <ion-button size="small">Delivered</ion-button>
+                </ion-col>
+              </ng-template>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+        <ion-row *ngIf="featch" class="divv ion-text-center col-center ">
+          <!-- <ion-col class="divv ion-text-center col-center "></ion-col> -->
+          <!-- <img src="" height="200px" width="100%"> -->
+          <!-- <ion-spinner name="crescent" color="primary"></ion-spinner> -->
+          <img src="assets/image/loading.gif" alt="">
+          Loading Today Order...
+
+
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

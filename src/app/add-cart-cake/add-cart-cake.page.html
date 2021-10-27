@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-outline" (click)="close()" class="arrow" ></ion-icon>
+    </ion-buttons>
+<ion-title class="ion-text-center">Add Cake</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="get_kundli_form">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Pond</ion-label>
+          <ion-input type="tel" [(ngModel)]="pond" placeholder="Pond"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Flavour</ion-label>
+          <ion-input [(ngModel)]="flvr" placeholder="Flavour"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Price</ion-label>
+          <ion-input type="tel" [(ngModel)]="amt" placeholder="Price"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Item Description</ion-label>
+          <ion-input [(ngModel)]="descc" placeholder="Description"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="getcamera()">
+            <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
+              <ion-icon name="camera"></ion-icon>
+            </config-file>
+          </ion-button>
+          <ion-button (click)="getgallery()">
+            <ion-icon name="images"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button expand="full" class="submit_btn btn-block" (click)="onSubmit()">Submit</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
