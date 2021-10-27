@@ -12,14 +12,17 @@ import { NavController } from '@ionic/angular';
 })
 export class AppComponent {
   @ViewChild(IonRouterOutlet,{static:true}) routerOutlet: IonRouterOutlet;
+  
   constructor(
     public nav: NavController,
     private route: Router,
     private altcon:AlertController,
     private plat:Platform,
     private location:Location,
+    public router:Router
   ) {
     this.backButtonEvent();
+    this.initializeApp();
   }
   backButtonEvent(){
     this.plat.backButton.subscribeWithPriority(10, () => {
@@ -46,5 +49,8 @@ export class AppComponent {
       }]
     });
 await alert.present();
+  }
+  initializeApp(){
+    this.router.navigateByUrl('splach');
   }
 }
